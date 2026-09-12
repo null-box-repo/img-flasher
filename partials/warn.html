@@ -1,0 +1,20 @@
+<!-- Flash warning dialog. -->
+<div id="warnModal" class="modal hidden">
+  <div class="dialog" dir="rtl">
+    <div class="dlg-head">
+      <h3>هل أنت متأكد؟</h3>
+      <button id="warnClose" class="icon" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="dlg-body">
+      <div class="warn-box">⚠ لا يتحمل المطور أي مسؤولية لسوء استعمال الأداة، إذا قمت بوضع ملف خاطئ قد يتعطل هاتفك نهائيًا (هاردبريك). يرجى التأكد من أن الملفات التي وضعتها صحيحة، ويرجى عدم مقاطعة الأداة عند بدء التفليش لأنها قد تتلف هاتفك.</div>
+      <div class="dlg-section">
+        <span class="dlg-label">الأهداف</span>
+        <div id="warnTargets" class="warn-targets"></div>
+      </div>
+    </div>
+    <div class="dlg-actions">
+      <button id="warnCancel" class="refresh">إلغاء</button>
+      <button id="warnAgree" class="dlg-done" disabled>موافق (10)</button>
+    </div>
+  </div>
+</div>

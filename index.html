@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!-- img flasher shell. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101010">
+  <title>Img Flasher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/core.css">
+  <link rel="stylesheet" href="/css/table.css">
+  <link rel="stylesheet" href="/css/dialogs.css">
+  <link rel="stylesheet" href="/css/ops.css">
+  <link rel="stylesheet" href="/css/animations.css">
+</head>
+<body>
+  <div class="app-frame">
+    <header class="topbar">
+      <a class="brand" href="#top">
+        <span class="brand-icon">▦</span>
+        <span>Img <span>Flasher</span></span>
+      </a>
+      <div class="top-actions">
+        <button id="theme" class="icon" aria-label="Toggle theme">☼</button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section id="home" class="welcome">
+        <div>
+          <small>IMG-FLASHER • /dev/block</small>
+          <h1>System blocks.<br><strong>Browse, Extract, Flash.</strong></h1>
+        </div>
+        <div class="hero-stat">
+          <span id="heroCount">—<br>blocks</span>
+        </div>
+      </section>
+
+      <div id="message"></div>
+
+      <section id="blocksPanel" class="panel">
+        <div class="card-head">
+          <div class="blocks-title">
+            <h2>Blocks</h2>
+            <span id="blockCount" class="helper">0</span>
+          </div>
+          <div class="media-actions">
+            <button id="refreshBtn" class="icon" aria-label="Refresh" title="Refresh (imgf list)">↻</button>
+            <button id="filterBtn" class="toggle-formats">⚙ Filter</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <span class="table-loading hidden"><span class="big-spinner"></span></span>
+          <table class="blk-table">
+            <thead>
+              <tr>
+                <th>NAME</th>
+                <th>TYPE</th>
+                <th>PATH</th>
+                <th>PARTNAME</th>
+                <th>PARENT</th>
+                <th>SECTORS</th>
+                <th>BYTES</th>
+                <th>SIZE</th>
+                <th>MAJMIN</th>
+                <th>RO</th>
+                <th>REMOVABLE</th>
+              </tr>
+            </thead>
+            <tbody id="blocks">
+              <tr class="empty-format"><td colspan="11">Loading <code>imgf list</code>…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="extractPanel" class="panel">
+        <div class="card-head">
+          <div class="blocks-title">
+            <h2>Extract</h2>
+            <span id="exCount" class="helper">0 selected</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <span class="table-loading hidden"><span class="big-spinner"></span></span>
+          <table class="blk-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>NAME</th>
+                <th>TYPE</th>
+                <th>PATH</th>
+                <th>PARTNAME</th>
+                <th>PARENT</th>
+                <th>SECTORS</th>
+                <th>BYTES</th>
+                <th>SIZE</th>
+                <th>MAJMIN</th>
+                <th>RO</th>
+                <th>REMOVABLE</th>
+              </tr>
+            </thead>
+            <tbody id="exRows">
+              <tr class="empty-format"><td colspan="12">Loading <code>imgf list</code>…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <label class="field">OUTPUT PATH
+          <input id="exOut" value="/sdcard/Download" placeholder="/sdcard/Download or /sdcard/Download/boot.img">
+        </label>
+        <small class="hint">Folder → each partition is saved as &lt;partname&gt;.img</small>
+        <button id="exBtn" class="download" disabled><span class="download-label">Extract</span></button>
+        <div id="exProg" class="op-progress hidden"><div class="op-bar"><i id="exBar"></i></div><span id="exPct">0%</span></div>
+        <div id="exMessage"></div>
+      </section>
+
+      <section id="flashPanel" class="panel">
+        <div class="card-head">
+          <div class="blocks-title">
+            <h2>Flash</h2>
+            <span id="flCount" class="helper">0 ready</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <span class="table-loading hidden"><span class="big-spinner"></span></span>
+          <table class="blk-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>NAME</th>
+                <th>TYPE</th>
+                <th>PATH</th>
+                <th>PARTNAME</th>
+                <th>PARENT</th>
+                <th>SECTORS</th>
+                <th>BYTES</th>
+                <th>SIZE</th>
+                <th>MAJMIN</th>
+                <th>RO</th>
+                <th>REMOVABLE</th>
+              </tr>
+            </thead>
+            <tbody id="flRows">
+              <tr class="empty-format"><td colspan="12">Loading <code>imgf list</code>…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <small class="hint">Tap ✎ on a row to set its .img file (typed path, e.g. /sdcard/Download/boot.img). Only rows with an image set will be flashed. double-check before flashing.</small>
+        <button id="flBtn" class="download danger" disabled><span class="download-label">Flash</span></button>
+        <div id="flProg" class="op-progress hidden"><div class="op-bar"><i id="flBar"></i></div><span id="flPct">0%</span></div>
+        <div id="flMessage"></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <a id="navBlocks" class="active" href="#blocksPanel"><span>▦</span>Blocks</a>
+      <a id="navExtract" href="#extractPanel"><span>⤓</span>Extract</a>
+      <a id="navFlash" href="#flashPanel"><span>⚠</span>Flash</a>
+    </nav>
+  </div>
+
+  <div id="partials"></div>
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/partials.js"></script>
+  <script src="/js/theme.js"></script>
+  <script src="/js/dialogs.js"></script>
+  <script src="/js/blocks.js"></script>
+  <script src="/js/extract.js"></script>
+  <script src="/js/flash.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

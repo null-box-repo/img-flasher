@@ -1,0 +1,20 @@
+<!-- Image path dialog. -->
+<div id="imgModal" class="modal hidden">
+  <div class="dialog">
+    <div class="dlg-head">
+      <h3 id="imgTitle">Set image</h3>
+      <button id="imgClose" class="icon" aria-label="Close">✕</button>
+    </div>
+    <div class="dlg-body">
+      <div class="dlg-section">
+        <span class="dlg-label">IMAGE PATH (.img)</span>
+        <input id="imgPath" placeholder="/sdcard/Download/boot.img" aria-label="Image path" dir="ltr">
+        <div id="imgError" class="hidden"></div>
+      </div>
+    </div>
+    <div class="dlg-actions">
+      <button id="imgClear" class="refresh">Clear</button>
+      <button id="imgSet" class="dlg-done">Set</button>
+    </div>
+  </div>
+</div>

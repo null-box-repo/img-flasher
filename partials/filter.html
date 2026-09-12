@@ -1,0 +1,52 @@
+<!-- Filter dialog. -->
+<div id="filterModal" class="modal hidden">
+  <div class="dialog">
+    <div class="dlg-head">
+      <h3>Filters</h3>
+      <button id="dlgClose" class="icon" aria-label="Close">✕</button>
+    </div>
+    <div class="dlg-body">
+      <div class="dlg-section">
+        <span class="dlg-label">Search</span>
+        <input id="q" placeholder="Name, PARTNAME or path… (e.g. boot)" aria-label="Search">
+      </div>
+      <div class="dlg-section">
+        <span class="dlg-label">Type</span>
+        <div class="chips" id="typeChips">
+          <button class="chip active" data-type="all">All</button>
+          <button class="chip" data-type="disk">disk</button>
+          <button class="chip" data-type="partition">partition</button>
+          <button class="chip" data-type="dm">dm</button>
+          <button class="chip" data-type="loop">loop</button>
+        </div>
+      </div>
+      <div class="dlg-section">
+        <span class="dlg-label">Sort</span>
+        <select id="sortSel">
+          <option value="name">Name (A–Z)</option>
+          <option value="bytes_desc">Size: largest first</option>
+          <option value="bytes_asc">Size: smallest first</option>
+          <option value="sectors_desc">Sectors: largest first</option>
+        </select>
+      </div>
+      <div class="dlg-section">
+        <span class="dlg-label">Group rows</span>
+        <select id="groupSel">
+          <option value="none">No grouping</option>
+          <option value="type">By type</option>
+          <option value="parent">By parent disk</option>
+        </select>
+      </div>
+      <div class="dlg-section">
+        <span class="dlg-label">Options</span>
+        <label class="mute-check"><input id="roOnly" type="checkbox"> Read-only only (RO=1)</label>
+        <label class="mute-check"><input id="namedOnly" type="checkbox"> Has PARTNAME only</label>
+        <label class="mute-check"><input id="removableOnly" type="checkbox"> Removable only</label>
+      </div>
+    </div>
+    <div class="dlg-actions">
+      <button id="dlgReset" class="refresh">Reset</button>
+      <button id="dlgDone" class="dlg-done">Done</button>
+    </div>
+  </div>
+</div>

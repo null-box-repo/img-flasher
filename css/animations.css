@@ -1,0 +1,23 @@
+/* All keyframes and responsive rules. */
+
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(.95) translateY(-4px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@keyframes popIn { 0% { opacity: 0; transform: scale(.7); } 60% { transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes rowIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes glowPulse { 0%, 100% { box-shadow: 0 6px 14px rgba(255, 0, 0, .25); } 50% { box-shadow: 0 6px 22px rgba(255, 0, 0, .55); } }
+@keyframes gradientShift { to { background-position: 200% center; } }
+@keyframes pulseSoft { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@keyframes barStripes { to { background-position: 16px 0; } }
+
+@media (max-width: 700px) {
+  .welcome { flex-direction: column; }
+  .hero-stat { display: none; }
+  main { padding: 24px 0 90px; }
+  .dialog { padding: 16px; }
+  .dlg-actions { flex-direction: column; }
+  .dlg-actions .refresh, .dlg-actions .dlg-done { width: 100%; }
+}
